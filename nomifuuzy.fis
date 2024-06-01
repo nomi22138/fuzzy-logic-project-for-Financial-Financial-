@@ -1,0 +1,60 @@
+[System]
+Name='nomifuuzy'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=1
+NumRules=6
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='GDP_growth'
+Range=[0 200]
+NumMFs=3
+MF1='negative':'trimf',[0 0 100]
+MF2='zero':'trimf',[50 100 150]
+MF3='positive':'trimf',[100 200 200]
+
+[Input2]
+Name='inflation_rates'
+Range=[-10 10]
+NumMFs=3
+MF1='low':'trimf',[0 0 5]
+MF2='mid':'trimf',[5 10 10]
+MF3='high':'trimf',[0 5 10]
+
+[Input3]
+Name='stock_price'
+Range=[0 1000]
+NumMFs=3
+MF1='decrease':'trimf',[0 0 500]
+MF2='stable':'trimf',[250 500 750]
+MF3='increase':'trimf',[500 1000 1000]
+
+[Input4]
+Name='exchange_rates'
+Range=[0.5 1.5]
+NumMFs=3
+MF1='decrease':'trimf',[1.252 1.502 1.752]
+MF2='stable':'trimf',[1.26638477801268 1.51 1.76]
+MF3='increase':'trimf',[1.5 2 2]
+
+[Output1]
+Name='output1'
+Range=[0 1]
+NumMFs=3
+MF1='low':'trimf',[-0.416666666666667 0 0.416666666666667]
+MF2='mid':'trimf',[0.0833333333333333 0.5 0.916666666666667]
+MF3='high':'trimf',[0.583333333333333 1 1.41666666666667]
+
+[Rules]
+1 2 2 1, 1 (1) : 1
+2 1 2 2, 2 (1) : 1
+3 3 2 3, 2 (1) : 1
+2 3 1 3, 3 (1) : 1
+3 2 3 3, 1 (1) : 1
+3 3 3 3, 3 (1) : 1
